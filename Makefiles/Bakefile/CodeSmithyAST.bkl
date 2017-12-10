@@ -1,0 +1,42 @@
+toolsets = gnu vs2015 vs2013;
+
+gnu.makefile = ../GNUmakefile/GNUmakefile;
+vs2015.solutionfile = ../VC14/CodeSmithyAST.sln;
+vs2013.solutionfile = ../VC12/CodeSmithyAST.sln;
+
+library CodeSmithyAST
+{
+    includedirs += ../../Include/CodeSmithy/AST;
+
+    if ($(toolset) == gnu)
+    {
+        cxx-compiler-options = "-std=c++11";
+        outputdir = ../../Lib;
+    }
+
+    if ($(toolset) != gnu)
+    {
+        archs = x86 x86_64;
+        outputdir = ../../../Lib/$(arch);
+    }
+
+    if ($(config) == Debug)
+    {
+        basename = CodeSmithyAST-d;
+    }
+
+    headers
+    {
+        ../../Include/CodeSmithy/AST/Identifier.h
+        ../../Include/CodeSmithy/AST/Type.h
+        ../../Include/CodeSmithy/AST/AbstractDataType.h
+        ../../Include/CodeSmithy/AST/linkoptions.h
+    }
+
+    sources
+    {
+        ../../Source/Identifier.cpp
+        ../../Source/Type.cpp
+        ../../Source/AbstractDataType.cpp
+    }
+}
