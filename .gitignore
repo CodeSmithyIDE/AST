@@ -1,0 +1,12 @@
+*.dll
+*.opensdf
+*.sdf
+*.suo
+*.vcxproj.user
+*.opendb
+*.vc.db
+*.pdb
+.vs
+Debug/
+Release/
+Lib/
